@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="icon" type="image/x-icon" href="./imgs/favicon.png">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/responsive.css">
+    <title>Cờ vua</title>
+</head>
+<body>
+    <div class="menu-container">
+        <div class="update">
+            <img src="./imgs/capnhat.png" alt="capnhat" class="update-img">
+            <div class="update-text"></div>
+        </div>
+        <h1 class="game-title">Cờ Vua</h1>
+        <ul class="menu-list">
+            <li class="menu-item">
+                <button class="menu-btn" id="play-with-player">Chơi với Người</button>
+            </li>
+            <li class="menu-item">
+                <button class="menu-btn" id="play-with-ai">Chơi với Máy</button>
+            </li>
+            <li class="menu-item">
+                <button class="menu-btn" id="settings">Cài Đặt</button>
+            </li>
+            <li class="menu-item">
+                <button class="menu-btn" id="score">Điểm Số</button>
+            </li>
+        </ul>
+    
+        <!-- Phần điểm số -->
+        <div class="score-container hidden">
+            <h2 class="score-title">Điểm Số</h2>
+            <p class="score-item">Điểm cao nhất: <span id="highest-score">0</span></p>
+            <p class="score-item">Điểm ván vừa nãy: <span id="last-score">0</span></p>
+            <button class="menu-btn" id="back-to-menu">Quay lại Menu</button>
+        </div>
+    </div>
+    
+    <div class="chess-wrapper hidden">
+        <div class="winner-modal hidden">
+            <div class="modal-overlay"></div> <!-- Lớp phủ mờ -->
+            <div class="modal-content">
+                <h2 class="winner-title">Người chiến thắng!</h2> <!-- Tiêu đề người thắng -->
+                <div class="winner-container">
+                    <div class="winner-player white-player">
+                        <div class="avatar">
+                            <img src="./imgs/anam1.png" alt="Player Avatar">
+                        </div>
+                        <div class="player-info">
+                            <div class="player-name">Admin</div>
+                            <div class="player-type">Cờ trắng</div>
+                            <div class="player-score">Điểm: 0</div>
+                        </div>
+                    </div>
+                    <div class="winner-player black-player">
+                        <div class="avatar">
+                            <img src="./imgs/anu1.png" alt="Bot Avatar">
+                        </div>
+                        <div class="player-info">
+                            <div class="player-name">Bot</div>
+                            <div class="player-type">Cờ đen</div>
+                            <div class="player-score">Điểm: 0</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="winner-icon">
+                    <div class="winner-refresh">
+                        <img class="refresh-icon" src="./imgs/refresh.png" alt="refresh">
+                    </div>
+                    <div class="winner-home">
+                        <img class="home-icon" src="./imgs/home.png" alt="home">
+                    </div>
+                    <div class="winner-eye">
+                        <img class="eye-img" src="./imgs/eye.png" alt="eye">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="warning">
+            <img src="./imgs/canhbao.png" alt="canhbao" class="warn-img">
+            <div class="warn-text"></div>
+        </div>
+        <div class="chess">
+            <!-- Nút mở cài đặt với hình ảnh -->
+            <button class="open-settings-btn">
+                <img src="./imgs/setting.png" alt="Settings" class="settings-icon">
+            </button>
+
+            <!-- Thẻ Cài Đặt ở góc màn hình -->
+            <div class="settings-container hidden">
+                <h2 class="settings-title">Cài Đặt</h2>
+                <ul class="settings-list">
+                    <li class="settings-item">
+                        <button class="settings-btn" id="back-home">Trang Chủ</button>
+                    </li>
+                    <li class="settings-item">
+                        <button class="settings-btn" id="reset-game">Chơi lại</button>
+                    </li>
+                    <li class="settings-item">
+                        <label for="volume-control">Âm Lượng:</label>
+                        <input type="range" id="volume-control" min="0" max="100" value="50">
+                    </li>
+                </ul>
+            </div>
+
+            <div class="player-wrapper">
+                <div class="player white">
+                    <div class="avt">
+                        <img src="./imgs/anam1.png" alt="Player Avatar">
+                    </div>
+                    <div class="player-des">
+                        <div class="name">Admin</div>
+                        <div class="type">Cờ trắng</div>
+                        <div class="score">Điểm: 0</div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="chess-pieces">
+                <!-- <div class="top-labels">
+                    <div class="label label-top">A</div>
+                    <div class="label label-top">B</div>
+                    <div class="label label-top">C</div>
+                    <div class="label label-top">D</div>
+                    <div class="label label-top">E</div>
+                    <div class="label label-top">F</div>
+                    <div class="label label-top">G</div>
+                    <div class="label label-top">H</div>
+                </div>
+                <div class="div" id="row8">
+                    <div class="label label-left">8</div>
+                    <div class="box" id="b81">Bxe</div>
+                    <div class="box" id="b82">Bma</div>
+                    <div class="box" id="b83">Btinh</div>
+                    <div class="box" id="b84">Bhau</div>
+                    <div class="box" id="b85">Bvua</div>
+                    <div class="box" id="b86">Btinh</div>
+                    <div class="box" id="b87">Bma</div>
+                    <div class="box" id="b88">Bxe</div>
+                    <div class="label label-right">8</div>
+               </div>
+        
+               <div class="div" id="row7">
+                   <div class="label label-left">7</div>
+                   <div class="box" id="b71">Btot</div>
+                   <div class="box" id="b72">Btot</div>
+                   <div class="box" id="b73">Btot</div>
+                   <div class="box" id="b74">Btot</div>
+                   <div class="box" id="b75">Btot</div>
+                   <div class="box" id="b76">Btot</div>
+                   <div class="box" id="b77">Btot</div>
+                   <div class="box" id="b78">Btot</div>
+                   <div class="label label-right">7</div>
+               </div>
+        
+               <div class="div" id="row6">
+                   <div class="label label-left">6</div>
+                   <div class="box" id="b61"></div>
+                   <div class="box" id="b62"></div>
+                   <div class="box" id="b63"></div>
+                   <div class="box" id="b64"></div>
+                   <div class="box" id="b65"></div>
+                   <div class="box" id="b66"></div>
+                   <div class="box" id="b67"></div>
+                   <div class="box" id="b68"></div>
+                   <div class="label label-right">6</div>
+               </div>
+        
+               <div class="div" id="row5">
+                   <div class="label label-left">5</div>
+                   <div class="box" id="b51"></div>
+                   <div class="box" id="b52"></div>
+                   <div class="box" id="b53"></div>
+                   <div class="box" id="b54"></div>
+                   <div class="box" id="b55"></div>
+                   <div class="box" id="b56"></div>
+                   <div class="box" id="b57"></div>
+                   <div class="box" id="b58"></div>
+                   <div class="label label-right">5</div>
+               </div>
+        
+               <div class="div" id="row4">
+                   <div class="label label-left">4</div>
+                   <div class="box" id="b41"></div>
+                   <div class="box" id="b42"></div>
+                   <div class="box" id="b43"></div>
+                   <div class="box" id="b44"></div>
+                   <div class="box" id="b45"></div>
+                   <div class="box" id="b46"></div>
+                   <div class="box" id="b47"></div>
+                   <div class="box" id="b48"></div>
+                   <div class="label label-right">4</div>
+               </div>
+        
+               <div class="div" id="row3">
+                   <div class="label label-left">3</div>
+                   <div class="box" id="b31"></div>
+                   <div class="box" id="b32"></div>
+                   <div class="box" id="b33"></div>
+                   <div class="box" id="b34"></div>
+                   <div class="box" id="b35"></div>
+                   <div class="box" id="b36"></div>
+                   <div class="box" id="b37"></div>
+                   <div class="box" id="b38"></div>
+                   <div class="label label-right">3</div>
+               </div>
+        
+               <div class="div" id="row2">
+                   <div class="label label-left">2</div>
+                   <div class="box" id="b21">Wtot</div>
+                   <div class="box" id="b22">Wtot</div>
+                   <div class="box" id="b23">Wtot</div>
+                   <div class="box" id="b24">Wtot</div>
+                   <div class="box" id="b25">Wtot</div>
+                   <div class="box" id="b26">Wtot</div>
+                   <div class="box" id="b27">Wtot</div>
+                   <div class="box" id="b28">Wtot</div>
+                   <div class="label label-right">2</div>
+               </div>
+        
+               <div class="div" id="row1">
+                   <div class="label label-left">1</div>
+                   <div class="box" id="b11">Wxe</div>
+                   <div class="box" id="b12">Wma</div>
+                   <div class="box" id="b13">Wtinh</div>
+                   <div class="box" id="b14">Whau</div>
+                   <div class="box" id="b15">Wvua</div>
+                   <div class="box" id="b16">Wtinh</div>
+                   <div class="box" id="b17">Wma</div>
+                   <div class="box" id="b18">Wxe</div>
+                   <div class="label label-right">1</div>
+               </div>
+
+                <div class="bottom-labels">
+                    <div class="label label-bottom">A</div>
+                    <div class="label label-bottom">B</div>
+                    <div class="label label-bottom">C</div>
+                    <div class="label label-bottom">D</div>
+                    <div class="label label-bottom">E</div>
+                    <div class="label label-bottom">F</div>
+                    <div class="label label-bottom">G</div>
+                    <div class="label label-bottom">H</div>
+                </div> -->
+            </div>
+            <div class="player-wrapper">
+                <div class="player black">
+                    <div class="avt">
+                        <img src="./imgs/anu1.png" alt="Bot Avatar">
+                    </div>
+                    <div class="player-des">
+                        <div class="name">Bot</div>
+                        <div class="type">Cờ đen</div>
+                        <div class="score">Điểm: 0</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <audio id="moveSound" src="./sounds/chess-move.mp3"></audio>
+    <audio id="capturedSound" src="./sounds/chess-capture.mp3"></audio>
+    <script src="./javascripts/main.js"></script>
+    <!-- <script src="./javascripts/render.js"></script> -->
+</body>
+</html>
